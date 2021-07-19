@@ -15,7 +15,7 @@
     </style>
 
     <style name="Theme.TestScreeningSatu.NoActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="windowActionBar">false</item>

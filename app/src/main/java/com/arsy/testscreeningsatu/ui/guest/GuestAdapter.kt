@@ -22,6 +22,11 @@ class GuestAdapter : RecyclerView.Adapter<GuestAdapter.GuestViewHolder>() {
         this.notifyDataSetChanged()
     }
 
+    fun clear() {
+        listGuests.clear()
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestViewHolder {
         val itemsGuestBinding = ItemsGuestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GuestViewHolder(itemsGuestBinding)

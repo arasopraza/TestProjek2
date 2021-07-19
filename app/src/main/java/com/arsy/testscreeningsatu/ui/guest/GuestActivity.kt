@@ -17,6 +17,7 @@ import org.json.JSONArray
 
 class GuestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGuestBinding
+    val guestAdapter = GuestAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,15 @@ class GuestActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         getGuestData()
+
+        binding.swipeContainer.setOnRefreshListener {
+            getGuestData()
+        }
+
+        binding.swipeContainer.setColorSchemeResources(
+            R.color.purple_700,
+            R.color.teal_200
+        )
     }
 
     private fun getGuestData() {
@@ -60,11 +70,11 @@ class GuestActivity : AppCompatActivity() {
                     }
 
                     binding.rvGuest.layoutManager = GridLayoutManager(this@GuestActivity, 2)
-                    val guestAdapter = GuestAdapter()
+                    guestAdapter.clear()
                     guestAdapter.setGuests(listItems)
                     binding.rvGuest.adapter = guestAdapter
                     binding.rvGuest.setHasFixedSize(true)
-
+                    binding.swipeContainer.isRefreshing = false
                 } catch (e: Exception) {
                     Toast.makeText(this@GuestActivity, e.message, Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
